@@ -1,0 +1,3 @@
+C:/Users/Wendy/CLionProjects/Inventario/cmake-build-debug/CMakeFiles/Inventario.dir
+C:/Users/Wendy/CLionProjects/Inventario/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Wendy/CLionProjects/Inventario/cmake-build-debug/CMakeFiles/rebuild_cache.dir
