@@ -10,15 +10,20 @@ int main()
     Inventory inventory;
     History history;
 
-    string name = "audifonos";
+    string initialProduct = "audifonos";
+    int initialQuantity = 10;
+    inventory.addProduct(initialProduct, initialQuantity);
+    history.addRecord("Producto inicial agregado: " + initialProduct + ", cantidad: " + to_string(initialQuantity));
 
-    int choice ;
+    int choice;
     do
     {
-        cout<<"Inventario 2024"<<endl;
-        cout<<"1.- Agreagar un producto: "<<endl;
-        cout<<"5.- Salir del inventario"<<endl;
-        cout<<"Elige una opcion: ";
+        cout << "Inventario 2024" << endl;
+        cout << "1.- Agregar un producto: " << endl;
+        cout << "2.- Obtener cantidad de un producto: " << endl;
+        cout << "3.- Eliminar un producto: " << endl;
+        cout << "5.- Salir del inventario" << endl;
+        cout << "Elige una opcion: ";
         cin >> choice;
 
         string nombre;
@@ -26,27 +31,53 @@ int main()
         switch (choice)
         {
         case 1:
-            cout<<"Nombre del producto: "<<endl;
-            cin>>nombre;
-            cout<<"Ingrese la cantidad: "<<endl;
-            cin>>cantidad;
+            cout << "Nombre del producto: " << endl;
+            cin >> nombre;
+            cout << "Ingrese la cantidad: " << endl;
+            cin >> cantidad;
             inventory.addProduct(nombre, cantidad);
-            history.addRecord();
+            // Agregar un registro al historial
+            history.addRecord("Producto agregado: " + nombre + ", cantidad: " + to_string(cantidad));
+            break;
+        case 2:
+            cout << "Nombre del producto: ";
+            cin >> nombre;
+            cantidad = inventory.getProduct(nombre);
+            if (cantidad >= 0)
+            {
+                cout << "Cantidad de " << nombre << ": " << cantidad << endl;
+            }
+            else
+            {
+                cout << "Producto no encontrado." << endl;
+            }
+            break;
+        case 3:
+            cout << "Nombre del producto: ";
+            cin >> nombre;
+            if (inventory.removeProduct(nombre))
+            {
+                cout << "Producto eliminado: " << nombre << endl;
+                history.addRecord("Producto eliminado: " + nombre);
+            }
+            else
+            {
+                cout << "Producto no encontrado." << endl;
+            }
+            break;
+        case 4:
+            cout << "Mostrando historial:" << endl;
+            history.showHistory();
             break;
         case 5:
-            cout<<"Saliendo del historial"<<endl;
+            cout << "Saliendo del historial" << endl;
             break;
-
         default:
-            cout<<"Opcion no validad"<<endl;
+            cout << "Opcion no valida" << endl;
             break;
-
         }
-    }while(choice != 5);
-    inventory.addProduct(name,3);
-    inventory.getProduct(name);
+    } while (choice != 5);
 
-
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }
+
